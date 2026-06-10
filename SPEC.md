@@ -1,9 +1,9 @@
-# Agants Protocol v0.1.0
+# DICE Protocol v0.1.0
 
 **A control protocol for LLM agents managing real-time systems.**
 
 > An LLM thinks in seconds. A simulation ticks in milliseconds.  
-> The Agants Protocol bridges that gap with declarative policy, reactive rules, and imperative commands — letting slow minds control fast worlds.
+> DICE bridges that gap with **D**eclarative policy, **I**mperative commands, **C**ontinuous execution, and **E**vent-driven rules — letting slow minds control fast worlds.
 
 ---
 
@@ -32,7 +32,7 @@ LLM agents need to control real-time systems — game simulations, robotics, inf
 
 ### The Solution
 
-The Agants Protocol introduces a **hybrid control model** with three complementary mechanisms:
+DICE introduces a **hybrid control model** with four complementary layers:
 
 | Mechanism | Speed | Persistence | Use Case |
 |-----------|-------|-------------|----------|
@@ -44,7 +44,18 @@ The agent sets *intent* through policy and rules, then issues *directives* throu
 
 ### Naming
 
-"Agants" = **Ants + Agents**. Named after the reference implementation (an ant colony RTS), but the protocol is domain-agnostic.
+**DICE** = **D**eclarative, **I**mperative, **C**ontinuous, **E**vent-driven.
+
+The four words describe the four layers of the protocol:
+
+| Letter | Layer | Description |
+|--------|-------|-------------|
+| **D** | Declarative Policy | Set behavior once, sim executes it every tick |
+| **I** | Imperative Commands | One-shot overrides for fine-grained control |
+| **C** | Continuous Execution | Simulation runs autonomously between agent calls |
+| **E** | Event-Driven Rules | Reactive rules fire at simulation speed |
+
+Named after the four architectural pillars, not any single implementation.
 
 ---
 
@@ -115,7 +126,7 @@ The agent calls OBSERVE → THINK → ACT. Between those calls, the simulation r
 
 ## 4. Core Primitives
 
-These are the abstract operations any Agants-compatible server must support.
+These are the abstract operations any DICE-compatible server must support.
 
 ### 4.1 OBSERVE — Read World State
 
@@ -576,7 +587,7 @@ Agent → RELEASE_SESSION(entity_id, token) → {ok}  // token revoked
 
 ## 9. Reactive Rules Engine
 
-The reactive rules engine is what makes the Agants Protocol suitable for real-time control. It allows agents to write **event-driven code that executes at simulation speed**, bridging the gap between slow agent inference and fast simulation ticks.
+The reactive rules engine is what makes DICE suitable for real-time control. It allows agents to write **event-driven code that executes at simulation speed**, bridging the gap between slow agent inference and fast simulation ticks.
 
 ### Rule Evaluation
 
@@ -624,7 +635,7 @@ Setting `once: true` makes a rule disable itself after its first fire. Useful fo
 
 ## 10. Reference Implementation
 
-**Agants** (https://github.com/DatTheMaster/agants) is the reference implementation.
+**Agants** (https://github.com/DatTheMaster/agants) is the reference implementation of the DICE protocol.
 
 ### Components
 
@@ -665,7 +676,7 @@ Setting `once: true` makes a rule disable itself after its first fire. Useful fo
 
 ## 11. Implementing a New Server
 
-To build an Agants-compatible server for a different domain:
+To build a DICE-compatible server for a different domain:
 
 ### Step 1: Define Your World State
 
@@ -721,24 +732,24 @@ Queue notifications for events the agent should know about:
 
 ### vs. MCP (Model Context Protocol)
 
-MCP is a **tool-calling protocol** — it exposes functions an LLM can invoke. The Agants Protocol uses MCP as a transport binding but adds:
+MCP is a **tool-calling protocol** — it exposes functions an LLM can invoke. DICE uses MCP as a transport binding but adds:
 - **Persistent policy** (MCP has no concept of stateful behavior between calls)
 - **Reactive rules** (MCP has no event-driven execution model)
 - **Real-time execution model** (MCP assumes request-response, not continuous control)
 
-MCP tells the agent "here are tools you can call." Agants tells the agent "here's how to control a system that runs faster than you."
+MCP tells the agent "here are tools you can call." DICE tells the agent "here's how to control a system that runs faster than you."
 
 ### vs. A2A (Agent-to-Agent, Google)
 
-A2A is for **inter-agent communication** — agents discovering and delegating to other agents. Agants is for **agent-to-system control** — an agent managing a real-time simulation. They're complementary: an A2A agent could delegate a subtask to an Agants-controlled system.
+A2A is for **inter-agent communication** — agents discovering and delegating to other agents. DICE is for **agent-to-system control** — an agent managing a real-time simulation. They're complementary: an A2A agent could delegate a subtask to a DICE-controlled system.
 
 ### vs. ACP (Agent Communication Protocol, Anthropic)
 
-ACP focuses on **agent interoperability** — standardizing how agents talk to each other. Agants focuses on **agent-system control** — standardizing how agents manage real-time systems. Different layers of the stack.
+ACP focuses on **agent interoperability** — standardizing how agents talk to each other. DICE focuses on **agent-system control** — standardizing how agents manage real-time systems. Different layers of the stack.
 
 ### vs. REST APIs
 
-A raw REST API gives you endpoints. Agants gives you a **control model** — the distinction between policy, rules, and commands; the execution model; the notification system. A REST API is a transport binding. Agants is the architecture on top of it.
+A raw REST API gives you endpoints. DICE gives you a **control model** — the distinction between policy, rules, and commands; the execution model; the notification system. A REST API is a transport binding. DICE is the architecture on top of it.
 
 ---
 

@@ -1,22 +1,25 @@
-# Agants Protocol
+# DICE Protocol
 
-**A control protocol for LLM agents managing real-time systems.**
+**D**eclarative, **I**mperative, **C**ontinuous, **E**vent-driven.
+
+A control protocol for LLM agents managing real-time systems.
 
 [Read the Spec →](SPEC.md)
 
 ## What Is This?
 
-LLMs are slow (seconds per inference). Real-time systems are fast (milliseconds per tick). The Agants Protocol bridges that gap with three complementary control mechanisms:
+LLMs are slow (seconds per inference). Real-time systems are fast (milliseconds per tick). DICE bridges that gap with four complementary layers:
 
-- **Declarative Policy** — set behavior once, sim executes it every tick
-- **Reactive Rules** — write condition-action rules that fire at sim speed
-- **Imperative Commands** — one-shot overrides for fine-grained control
+- **D — Declarative Policy** — set behavior once, sim executes it every tick
+- **I — Imperative Commands** — one-shot overrides for fine-grained control
+- **C — Continuous Execution** — simulation runs autonomously between agent calls
+- **E — Event-Driven Rules** — reactive rules fire at simulation speed
 
 The agent is a *supervisor*, not a *driver*. It sets intent and lets the simulation run.
 
 ## Why?
 
-Every game, simulation, or real-time system controlled by an LLM faces the same problem: the agent can't keep up. Existing protocols (MCP, REST) assume request-response. Agants assumes the system runs autonomously and the agent shapes its behavior through policy.
+Every game, simulation, or real-time system controlled by an LLM faces the same problem: the agent can't keep up. Existing protocols (MCP, REST) assume request-response. DICE assumes the system runs autonomously and the agent shapes its behavior through policy.
 
 ## Quick Start
 
