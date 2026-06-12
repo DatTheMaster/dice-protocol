@@ -660,9 +660,9 @@ Setting `once: true` makes a rule disable itself after its first fire. Useful fo
 | Reactive Rules | `DirectiveEngine.eval_triggers()` — runs every tick |
 | Notifications | `Colony.notifications` queue — pushed by `check_alerts()` |
 
-### Stats (as of v2.13)
+### Stats (as of v2.15)
 
-- **22 MCP tools** covering all protocol primitives
+- **29 MCP tools** covering all protocol primitives
 - **6 resource types** (food, dirt, and their derivatives)
 - **8 unit states** (idle, foraging, returning, exploring, fighting, patrolling, recruited, building)
 - **5 structure types** (watchtower, barracks, guard_post, wall, larder)
